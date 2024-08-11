@@ -21,15 +21,15 @@ class MyApp extends StatelessWidget {
       title: 'Cotidianis My App',
       theme: ThemeData.light().copyWith(extensions: const [
         AppColors(
-            accentuated: Color(0xff91c2f3),
-            overlay: Color(0xffEDF5FD),
-            hint: Color(0x7EFFFFFF))
+            accentuated: Color(0xff773344),
+            overlay: Color(0xffe3b5a4),
+            hint: Color(0xfff5e9e2))
       ]),
       darkTheme: ThemeData.dark().copyWith(extensions: const [
         AppColors(
-            accentuated: Color(0xff1c68B0),
-            overlay: Color(0xff39383a),
-            hint: Color(0xFf6a747c))
+            accentuated: Color(0xff471f29),
+            overlay: Color(0xffd89a83),
+            hint: Color(0xFfefdcd1))
       ]),
       themeMode: ThemeMode.system,
       home: const MyHomePage(title: 'COTIDIANIS'),
@@ -57,7 +57,13 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           backgroundColor: colors.accentuated,
           title: Text(widget.title),
+          titleTextStyle: TextStyle(color: colors.hint, fontSize: 15),
           bottom: TabBar(
+            labelColor:
+                colors.overlay, // Cambia el color del título seleccionado
+            unselectedLabelColor: colors.hint,
+            indicatorColor:
+                colors.overlay, // Cambia el color del título no seleccionado
             tabs: <Widget>[
               Tab(
                 icon: const Icon(Icons.library_books_rounded),
@@ -81,8 +87,8 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ],
           ),
-          leading:
-              const Image(image: AssetImage('assets/images/cotidianis.png')),
+          /*leading:
+              const Image(image: AssetImage('assets/images/cotidianis.png')),*/
         ),
         body: TabBarView(
           children: <Widget>[
