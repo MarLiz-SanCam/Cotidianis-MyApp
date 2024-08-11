@@ -1,5 +1,6 @@
 import 'package:cotidianis_myapp/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -57,6 +58,11 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           backgroundColor: colors.accentuated,
           title: Text(widget.title),
+          notificationPredicate: (ScrollNotification notification) {
+            return notification.depth == 1;
+          },
+          scrolledUnderElevation: 15.0,
+          shadowColor: colors.hint,
           titleTextStyle: TextStyle(color: colors.hint, fontSize: 15),
           bottom: TabBar(
             labelColor:
@@ -116,13 +122,38 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
             ),
-            ListView.builder(
-              itemCount: 25,
-              itemBuilder: (BuildContext context, int index) {
-                return const ListTile(
-                  title: Text('Inventario de hogar'),
-                );
-              },
+            Stack(
+              children: [
+                SfCalendar(
+                  todayHighlightColor: colors.accentuated,
+                  todayTextStyle: TextStyle(color: colors.hint),
+                  headerStyle: CalendarHeaderStyle(
+                    backgroundColor:
+                        colors.hint, // Color de fondo de la barra de mes y año
+                    textStyle: const TextStyle(
+                      // Color del texto del mes y año
+                      fontSize: 20, // Tamaño de fuente del texto del mes y año
+                    ),
+                  ),
+                ),
+                //TODO: Cambiar el boton por una funcion adecuada para agregar eventos
+                Positioned(
+                    bottom:
+                        20, // Cambia este valor para ajustar la posición vertical
+                    right: 20,
+                    child: FloatingActionButton(
+                      backgroundColor: colors.accentuated,
+                      foregroundColor: colors.hint,
+                      shape: const CircleBorder(),
+                      onPressed: () {
+                        const snackBar = SnackBar(
+                          content: Text('Button working'),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      },
+                      child: const Icon(Icons.add),
+                    ))
+              ],
             ),
             ListView.builder(
               itemCount: 25,
