@@ -8,6 +8,7 @@ void main() {
 List<String> titles = <String>[
   'Notes',
   'Lists',
+  'Finances',
   'Calendar',
   'Inventory',
 ];
@@ -39,7 +40,6 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
   final String title;
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -49,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     //Colors
     var colors = Theme.of(context).extension<AppColors>()!;
-    const int tabsCount = 4;
+    const int tabsCount = 5;
     return DefaultTabController(
       initialIndex: 0,
       length: tabsCount,
@@ -64,17 +64,21 @@ class _MyHomePageState extends State<MyHomePage> {
                 text: titles[0],
               ),
               Tab(
-                icon: const Icon(Icons.list_alt_rounded),
+                icon: const Icon(Icons.library_books_rounded),
                 text: titles[1],
               ),
               Tab(
-                icon: const Icon(Icons.calendar_month_rounded),
+                icon: const Icon(Icons.attach_money_sharp),
                 text: titles[2],
               ),
               Tab(
-                icon: const Icon(Icons.inventory_rounded),
+                icon: const Icon(Icons.calendar_month_rounded),
                 text: titles[3],
-              )
+              ),
+              Tab(
+                icon: const Icon(Icons.list_alt_rounded),
+                text: titles[4],
+              ),
             ],
           ),
           leading:
@@ -86,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
               itemCount: 25,
               itemBuilder: (BuildContext context, int index) {
                 return const ListTile(
-                  title: Text('MyLists'),
+                  title: Text('Notas aqui en forma de mosaico'),
                 );
               },
             ),
@@ -94,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
               itemCount: 25,
               itemBuilder: (BuildContext context, int index) {
                 return const ListTile(
-                  title: Text('Calendar'),
+                  title: Text('Listas de compras y otros'),
                 );
               },
             ),
@@ -102,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
               itemCount: 25,
               itemBuilder: (BuildContext context, int index) {
                 return const ListTile(
-                  title: Text('Notes'),
+                  title: Text('Calendario y agenda'),
                 );
               },
             ),
@@ -110,7 +114,15 @@ class _MyHomePageState extends State<MyHomePage> {
               itemCount: 25,
               itemBuilder: (BuildContext context, int index) {
                 return const ListTile(
-                  title: Text('Notes'),
+                  title: Text('Inventario de hogar'),
+                );
+              },
+            ),
+            ListView.builder(
+              itemCount: 25,
+              itemBuilder: (BuildContext context, int index) {
+                return const ListTile(
+                  title: Text('Finanzas'),
                 );
               },
             ),
