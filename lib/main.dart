@@ -1,6 +1,10 @@
-import 'package:cotidianis_myapp/app_colors.dart';
+import 'package:cotidianis_myapp/Design/app_colors.dart';
+import 'package:cotidianis_myapp/Pages/calendar_page.dart';
+import 'package:cotidianis_myapp/Pages/finance_page.dart';
+import 'package:cotidianis_myapp/Pages/inventory_page.dart';
+import 'package:cotidianis_myapp/Pages/lists_page.dart';
+import 'package:cotidianis_myapp/Pages/notes_page.dart';
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -96,73 +100,13 @@ class _MyHomePageState extends State<MyHomePage> {
           /*leading:
               const Image(image: AssetImage('assets/images/cotidianis.png')),*/
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: <Widget>[
-            ListView.builder(
-              itemCount: 25,
-              itemBuilder: (BuildContext context, int index) {
-                return const ListTile(
-                  title: Text('Notas aqui en forma de mosaico'),
-                );
-              },
-            ),
-            ListView.builder(
-              itemCount: 25,
-              itemBuilder: (BuildContext context, int index) {
-                return const ListTile(
-                  title: Text('Listas de compras y otros'),
-                );
-              },
-            ),
-            ListView.builder(
-              itemCount: 25,
-              itemBuilder: (BuildContext context, int index) {
-                return const ListTile(
-                  title: Text('Calendario y agenda'),
-                );
-              },
-            ),
-            Stack(
-              children: [
-                SfCalendar(
-                  todayHighlightColor: colors.accentuated,
-                  todayTextStyle: TextStyle(color: colors.hint),
-                  headerStyle: CalendarHeaderStyle(
-                    backgroundColor:
-                        colors.hint, // Color de fondo de la barra de mes y año
-                    textStyle: const TextStyle(
-                      // Color del texto del mes y año
-                      fontSize: 20, // Tamaño de fuente del texto del mes y año
-                    ),
-                  ),
-                ),
-                //TODO: Cambiar el boton por una funcion adecuada para agregar eventos
-                Positioned(
-                    bottom:
-                        20, // Cambia este valor para ajustar la posición vertical
-                    right: 20,
-                    child: FloatingActionButton(
-                      backgroundColor: colors.accentuated,
-                      foregroundColor: colors.hint,
-                      shape: const CircleBorder(),
-                      onPressed: () {
-                        const snackBar = SnackBar(
-                          content: Text('Button working'),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      },
-                      child: const Icon(Icons.add),
-                    ))
-              ],
-            ),
-            ListView.builder(
-              itemCount: 25,
-              itemBuilder: (BuildContext context, int index) {
-                return const ListTile(
-                  title: Text('Finanzas'),
-                );
-              },
-            ),
+            NotesTab(),
+            ListsTab(),
+            FinancesTab(),
+            CalendarTab(),
+            InventoryTab(),
           ],
         ),
       ),
